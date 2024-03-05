@@ -100,7 +100,7 @@ exports.getAllAdmins = AsyncHandler(async (req, res) => {
 //@route DELETE /api/admins/:id
 
 exports.deleteAdmin = AsyncHandler(async (req, res) => {
-  const admin = await Admin.findById(req.params.id);
+  const admin = await Admin.findById(req.user._id);
   if (!admin) {
     res.status(404);
     throw new Error("Admin not found");
