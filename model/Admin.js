@@ -5,10 +5,6 @@ const adminSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide a name"],
     },
-    telephone: {
-      type: String,
-      required: [true, "Please provide a telephone"],
-    },
     email: {
       type: String,
       required: [true, "Please provide an email"],
