@@ -22,7 +22,7 @@ adminRouter.get(
   getAllAdmins
 );
 adminRouter.get(
-  "/profile",
+  "/:id",
   isAuthenticated(Admin),
   roleRestriction("admin"),
   getAdminProfile

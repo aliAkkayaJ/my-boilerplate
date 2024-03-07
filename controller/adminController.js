@@ -63,8 +63,8 @@ exports.loginAdmin = AsyncHandler(async (req, res) => {
 
 //with .popule method u can see the what is the created details. I mean u don't see only id's.
 exports.getAdminProfile = AsyncHandler(async (req, res) => {
-  const admin = await Admin.findById(req.user._id).select(
-    "-createdAt -updatedAt -__v"
+  const admin = await Admin.findById(req.params.id).select(
+    "-password -createdAt -updatedAt -__v"
   );
   if (!admin) {
     res.status(404);
