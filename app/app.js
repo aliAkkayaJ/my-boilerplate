@@ -1,5 +1,5 @@
 const express = require("express");
-const adminRouter = require("./routes/adminRouter");
+const adminRouter = require("../routes/adminRouter");
 const {
   notFoundErr,
   globalErrHandler,

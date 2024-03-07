@@ -8,6 +8,8 @@ const {
   loginAdmin,
   getAllAdmins,
   getAdminProfile,
+  updateAdminProfile,
+  deleteAdmin,
 } = require("../controller/adminController");
 const adminRouter = express.Router();
 
@@ -29,7 +31,7 @@ adminRouter.put(
   "/update",
   isAuthenticated(Admin),
   roleRestriction("admin"),
-  updateAdmin
+  updateAdminProfile
 );
 adminRouter.delete(
   "/delete",
