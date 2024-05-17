@@ -1,15 +1,15 @@
-import Mailgun from "mailgun-js";
-import dotenv from "dotenv";
+const Mailgun = require("mailgun-js");
+const dotenv = require("dotenv");
 dotenv.config();
 
 // Mailgun istemcisini oluşturun
-const mailgun = new Mailgun({
+const mailgun = Mailgun({
   apiKey: process.env.MAILGUN_API_KEY,
   domain: process.env.MAILGUN_DOMAIN,
 });
 
 // E-posta gönderimini sağlayan fonksiyon
-export const sendEmail = async (to, subject, html) => {
+const sendEmail = async (to, subject, html) => {
   const data = {
     from: process.env.MAILGUN_FROM_EMAIL,
     to: to,
@@ -29,7 +29,7 @@ export const sendEmail = async (to, subject, html) => {
 };
 
 // Şifre sıfırlama e-postası gönderen fonksiyon
-export const sendResetPasswordEmail = async (to, token) => {
+const sendResetPasswordEmail = async (to, token) => {
   const subject = "Şifre Sıfırlama";
   const resetPasswordUrl = `http://localhost:2020/api/v1/auth/reset-password?token=${token}`;
   const html = `
@@ -95,7 +95,7 @@ export const sendResetPasswordEmail = async (to, token) => {
 };
 
 // E-posta adresini doğrulama e-postası gönderen fonksiyon
-export const sendVerificationEmail = async (to, token) => {
+const sendVerificationEmail = async (to, token) => {
   const subject = "E-posta Doğrulama";
   const verificationEmailUrl = `http://link-to-app/verify-email?token=${token}`;
   const html = `
@@ -157,4 +157,10 @@ export const sendVerificationEmail = async (to, token) => {
   </html>
 `;
   await sendEmail(to, subject, html);
+};
+
+module.exports = {
+  sendEmail,
+  sendResetPasswordEmail,
+  sendVerificationEmail,
 };
